@@ -1,0 +1,75 @@
+				ROOT
+
+1.
+Three User Interfaces
+ 
+*             GUI
+windows, buttons,
+menus
+*        Root Command line
+CINT (C++
+interpreter)
+*             Macros, applications,
+libraries (C++ compiler
+and interpreter)
+Histograms
+ 
+quit .q
+TBrowser b;
+ 
+we can make histograms and other things using GUI.
+ 
+ 
+                                                                                                                                            
+Open a File
+ 
+reading
+root [] TFile f("Example.root")
+list contents
+root [] f.ls()
+ 
+plotting a variable
+root [] myTree->Draw("xs1")
+ 
+Analysis methods
+TTree::Draw
+ 
+ 
+TNtuple is a TTree
+ 
+               
+Coding Conventions
+ 
+Classes���� begin with T �� TTree, TBrowser
+Non-class types �� �end with _t ���� Int_t
+Data members�� begin with f���� fTree
+Member functions begin with a capital �� Loop()
+Constants ���� �begin with k �� kInitialSize, kRed
+Static variables �� �begin with g �� gEnv
+������������������������� begin with fg��������� fgTokenClient
+ 
+.command .g .ls .pwd .class .files
+.x execute command
+.s .S .e .c .c 45 .p . 34 .db 34 .break .trace
+multiple lines {}
+ 
+gROOT
+ 
+DrawClass()
+Inspect()
+Dump() list of an object
+
+TF1 * nuOscProb = new TF1("prob", "sin( 1.27*2.1e-3*x / [0] )**2 ", 0.0, 1.0e4);root [1] nuOscProb->SetParameter(0, 3.0); root [2] nuOscProb->Draw("");
+
+
+Canvas 
+frame for a graph 
+
+TCanvas, TH1F, TCut, Draw
+
+own formulas 
+TF1, TFormula class fit functions 
+
+
+Multivariate Analysis
+
