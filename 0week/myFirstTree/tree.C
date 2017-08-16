@@ -1,22 +1,35 @@
+#include "TFile.h"
+#include "TTree.h"
 
+void tree(void){
 
-int main(int argc, char **argv){
+  // Create a ROOT file to save the TTree
 
-  TFile hfile("Event.root","RECREATE","Example");
+  TFile *ftree = new TFile("Muon.root","RECREATE");
 
   // Create a ROOT Tree 
 
   TTree *tree = new TTree("myTree","my first ROOT tree");
   //TTree aliTree with folders
 
+  struct Muon{
+    Double_t Pt;
+    Double_t Eta;
+    Double_t Phi;
+    Double_t E;
+  };
   //Event *event = 0;
-  Event *event = new Event();
-
-  // Creating variables
-  Double_t Pt,Eta,Phi,E;
+  //Event *event = new Event();
+  struct Muon event;
 
   // Create one branch.
-  myTree->Branch("Muon", "Event", &event,"Pt/D:Eta/D:Phi/D:E/D");
+  tree->Branch("Event", &event,"Pt/D:Eta/D:Phi/D:E/D");
 
+  // Fill the tree 
+  tree->Fill();
 
+  // Write and close the ROOT file 
+  tree->Write();
+
+  delete ftree;
 }
