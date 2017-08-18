@@ -3,8 +3,13 @@
 
 void tree(void){
 
+<<<<<<< HEAD
   Int_t ntimes=100;
 
+=======
+  Int_t N = 100;
+  
+>>>>>>> 5331526b7cbdb9f3dc6bb9ff5ddd47f64ee217eb
   // Create a ROOT file to save the TTree
 
   TFile *ftree = new TFile("Muon.root","RECREATE");
@@ -26,6 +31,7 @@ void tree(void){
 
   // Create one branch.
   tree->Branch("Event", &event,"Pt/D:Eta/D:Phi/D:E/D");
+<<<<<<< HEAD
   
   for(Int_t i=0;i<ntimes;i++){
     Muon.Pt=i;
@@ -33,6 +39,17 @@ void tree(void){
     Muon.Phi=ntimes*2+i;
     Muon.E=ntimes*3+i;
   }
+=======
+
+  // Assign some values to each leave
+  for(Int_t i=0;i<N;i++){
+    Pt = i;
+    Eta = N + i;
+    Phi = 2*N + i;
+    E = 3*N + i;
+  }
+  
+>>>>>>> 5331526b7cbdb9f3dc6bb9ff5ddd47f64ee217eb
   // Fill the tree 
   tree->Fill();
 
