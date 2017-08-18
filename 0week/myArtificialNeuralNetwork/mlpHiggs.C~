@@ -69,12 +69,12 @@ void mlpHiggs(Int_t ntrain=100) {
   // interested  by high pt events.
   // The datasets used here are the same as the default ones.
    TMultiLayerPerceptron *mlp =
-       new TMultiLayerPerceptron("@msumf,@ptsumf,@acolin:5:3:type",
+       new TMultiLayerPerceptron("@nch,@msumf,@ptsumf,@acolin:5:3:type",
   		       "ptsumf",simu,"Entry$%2","(Entry$+1)%2");
    mlp->Train(ntrain, "text,graph,update=10");
    mlp->Export("test","python");
-   //TCanvas *mcanvas = new TCanvas("m_Canvas","1.Network shape");
-   //mlp->DrawResult(0,"train");
+   TCanvas *mcanvas = new TCanvas("m_Canvas","Network shape");
+   mlp->DrawResult(0,"train");
 
    // Use TMLPAnalyzer to see what it looks for
    TCanvas* mlpa_canvas = new TCanvas("mlpa_canvas","Network analysis");
@@ -83,7 +83,7 @@ void mlpHiggs(Int_t ntrain=100) {
    // Initialisation
    ana.GatherInformations();
    // output to the console
-   ana.CheckNetwork();
+   //ana.CheckNetwork();
    mlpa_canvas->cd(1);
    // shows how each variable influences the network
    ana.DrawDInputs();
