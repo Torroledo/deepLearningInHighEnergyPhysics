@@ -71,36 +71,36 @@ void mlpHiggs(Int_t ntrain=100) {
    TMultiLayerPerceptron *mlp =
        new TMultiLayerPerceptron("@msumf,@ptsumf,@acolin:5:3:type",
   		       "ptsumf",simu,"Entry$%2","(Entry$+1)%2");
-   mlp->Train(ntrain, "text,graph,update=10");
+   mlp->Train(ntrain, "text,update=10");
    mlp->Export("test","python");
    //TCanvas *mcanvas = new TCanvas("m_Canvas","1.Network shape");
    //mlp->DrawResult(0,"train");
 
    // Use TMLPAnalyzer to see what it looks for
-   TCanvas* mlpa_canvas = new TCanvas("mlpa_canvas","Network analysis");
-   mlpa_canvas->Divide(2,2);
-   TMLPAnalyzer ana(mlp);
+   // TCanvas* mlpa_canvas = new TCanvas("mlpa_canvas","Network analysis");
+   //mlpa_canvas->Divide(2,2);
+   //TMLPAnalyzer ana(mlp);
    // Initialisation
-   ana.GatherInformations();
+   //ana.GatherInformations();
    // output to the console
-   ana.CheckNetwork();
-   mlpa_canvas->cd(1);
+   //ana.CheckNetwork();
+   //mlpa_canvas->cd(1);
    // shows how each variable influences the network
-   ana.DrawDInputs();
-   mlpa_canvas->cd(2);
+   //ana.DrawDInputs();
+   //mlpa_canvas->cd(2);
    // shows the network structure
-   mlp->Draw();
-   mlpa_canvas->cd(3);
+   //mlp->Draw();
+   //mlpa_canvas->cd(3);
    // draws the resulting network
-   ana.DrawNetwork(0,"type==1","type==0");
-   mlpa_canvas->cd(4);
+   //ana.DrawNetwork(0,"type==1","type==0");
+   //mlpa_canvas->cd(4);
    // Use the NN to plot the results for each sample
    // This will give approx. the same result as DrawNetwork.
    // All entries are used, while DrawNetwork focuses on
    // the test sample. Also the xaxis range is manually set.
-   TH1F *bg = new TH1F("bgh", "NN output", 50, -.5, 1.5);
-   TH1F *sig = new TH1F("sigh", "NN output", 50, -.5, 1.5);
-   bg->SetDirectory(0);
+   //TH1F *bg = new TH1F("bgh", "NN output", 50, -.5, 1.5);
+   //TH1F *sig = new TH1F("sigh", "NN output", 50, -.5, 1.5);
+   /*bg->SetDirectory(0);
    sig->SetDirectory(0);
    Double_t params[3];
    for (i = 0; i < background->GetEntries(); i++) {
@@ -131,5 +131,5 @@ void mlpHiggs(Int_t ntrain=100) {
    legend->Draw();
    mlpa_canvas->cd(0);
    mlpa_canvas->Print("myHiggs.pdf");
-   delete input;
+   delete input;*/
 }
