@@ -8,6 +8,7 @@ void mlpHiggs(Int_t ntrain=100) {
 
   if (!gROOT->GetClass("TMultiLayerPerceptron")) {
     gSystem->Load("libMLP");
+    cout << "MLP lib Loaded :)" << endl; 
   }
 
   // Importing necessary libs
@@ -65,12 +66,16 @@ void mlpHiggs(Int_t ntrain=100) {
     background->GetEntry(i);
     simu->Fill();
   }
+  simu->Print();
   // Build and train the NN ptsumf is used as a weight since we are primarly
   // interested  by high pt events.
   // The datasets used here are the same as the default ones.
-   TMultiLayerPerceptron *mlp =
-       new TMultiLayerPerceptron("@msumf,@ptsumf,@acolin:5:3:type",
-  		       "ptsumf",simu,"Entry$%2","(Entry$+1)%2");
+  // TMultiLayerPerceptron *mlp =
+  //    new TMultiLayerPerceptron("@msumf,@ptsumf,@acolin:5:3:type",
+  //	       "ptsumf",simu,"Entry$%2","(Entry$+1)%2");
+  TMultiLayerPerceptron *mlp =
+    new TMultiLayerPerceptron("@msumf,@ptsumf,@acolin:5:3:type",simu);
+
    mlp->Train(ntrain, "text,update=10");
    mlp->Export("test","python");
    //TCanvas *mcanvas = new TCanvas("m_Canvas","1.Network shape");
